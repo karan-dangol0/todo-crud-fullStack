@@ -15,6 +15,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [editingValue, setEditingValue] = useState("");
   const [editingId, setEditingId] = useState(null);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const getTask = async () => {
     try {
@@ -120,6 +121,18 @@ const App = () => {
        
     }
   }
+
+  const handleComplete = async (id) => {
+    try {
+      await axios.put(id, {
+        completed: true,
+      });
+      getTask();
+    } catch (error) {
+      showError("Something went Wrong!"); 
+    }
+
+  }
   return (
     <>
       {/* {tasks?.map(task => (
@@ -155,7 +168,7 @@ const App = () => {
           <div className="max-w-[200px] mt-10 justify-center  select-none ">
             <ul className="flex items-center justify-center flex-col ">
               {tasks?.map((task) => (
-                <li className="flex flex-row items-center m-2" key={task._id}>
+                <li className={`flex flex-row items-center m-2 ${task.completed ? "line-through" : "line-none"}`} key={task._id}>
 
                   {editingId === task._id ? (
                    <input type="text" value={editingValue} onChange={handleEditChange} onBlur={()=> handleEditSubmit(task._id)} onKeyDown={(e) => e.key === "Enter" && handleEditSubmit(task._id)}  autoFocus /> 
@@ -168,7 +181,7 @@ const App = () => {
                   <span onClick={() => handleDelete(task._id)}>
                     <FaTrash className="ml-4" />
                   </span>{" "}
-                  <span>
+                  <span onClick={() => handleComplete}>
                     <MdOutlineDoneOutline className="ml-2" />
                   </span>
 
