@@ -181,7 +181,7 @@ const App = () => {
                   <span onClick={() => handleDelete(task._id)}>
                     <FaTrash className="ml-4" />
                   </span>{" "}
-                  <span onClick={() => handleComplete}>
+                  <span onClick={() => handleComplete(task._id)}>
                     <MdOutlineDoneOutline className="ml-2" />
                   </span>
 
