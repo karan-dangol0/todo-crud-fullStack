@@ -130,6 +130,8 @@ const App = () => {
       getTask();
     } catch (error) {
       showError("Something went Wrong!"); 
+      console.log(error);
+      
     }
 
   }
