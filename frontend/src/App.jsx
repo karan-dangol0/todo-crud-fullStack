@@ -122,9 +122,11 @@ const App = () => {
     }
   }
 
+  
   const handleComplete = async (id) => {
     try {
-      await axios.put(id, {
+      const url = `https://todo-crud-full-stack-six.vercel.app/${id}`;
+      await axios.put(url, {
         completed: true,
       });
       getTask();
