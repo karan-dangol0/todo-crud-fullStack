@@ -28,7 +28,9 @@ const App = () => {
       */
       }
 
-      const res = await axios.get("http://localhost:3000/");
+      // const res = await axios.get("http://localhost:3000/");
+      
+      const res = await axios.get("https://todo-crud-full-stack-six.vercel.app/");
       //
 
       setTasks(res.data.data); // _id task completed createdAt updatedAt
@@ -62,7 +64,9 @@ const App = () => {
     };
     try {
       setLoading(true);
-      const url = "http://localhost:3000/";
+      // const url = "http://localhost:3000/";
+      const url = "https://todo-crud-full-stack-six.vercel.app/";
+
       let res = await axios.post(url, {
         task: taskValue,
         completed: false,
@@ -88,10 +92,12 @@ const App = () => {
       setLoading(false);
     }
   };
+  
 
   const handleDelete = async (id) => {
     try {
-      const url = `http://localhost:3000/${id}`;
+      // const url = `http://localhost:3000/${id}`;
+      const url = `https://todo-crud-full-stack-six.vercel.app/${id}`;
       const res = await axios.delete(url);
       getTask();
     } catch (error) {
@@ -101,7 +107,8 @@ const App = () => {
 
   const handleEditSubmit = async (id) => {
     try {
-      const url = `http://localhost:3000/${id}`;
+      // const url = `http://localhost:3000/${id}`;
+      const url = `https://todo-crud-full-stack-six.vercel.app/${id}`;
       const res = await axios.put(url, {
         task: editingValue,
          
